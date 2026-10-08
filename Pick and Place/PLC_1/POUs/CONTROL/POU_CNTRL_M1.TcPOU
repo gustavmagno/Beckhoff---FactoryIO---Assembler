@@ -161,7 +161,7 @@ CASE ActualStep OF
 			NextStep := 200;
 		END_IF
 		
-	// waits all conditions met and start machine again	
+	// waits all conditions to be met and start machine again	
 	200:
 		IF (NOT bClampBase AND NOT bClampLid AND NOT bMoveX AND NOT bMovingX AND NOT bMoveZ AND NOT bMovingZ) THEN
  				NextStep := 0;
