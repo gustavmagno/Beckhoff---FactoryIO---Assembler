@@ -454,3 +454,6 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/twincat3,visualstudio
+# TwinCAT HMI, filter downloaded JSON schema files
+json-schema.org
+
