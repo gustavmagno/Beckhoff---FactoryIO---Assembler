@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="POU_CNTRL_M1_AUX" Id="{1009439d-684f-4853-be23-513aece63e0c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM POU_CNTRL_M1_AUX
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ProcessTimers[0] (
+	IN := POU_CNTRL_M1.ActualStep = 50,
+	PT := T#1S,
+);
+
+ProcessTimers[1] (
+	IN := POU_CNTRL_M1.ActualStep = 70,
+	PT := T#1S,
+);
+
+ProcessTimers[2] (
+	IN := POU_CNTRL_M1.ActualStep = 80,
+	PT := T#1S,
+);
+
+ProcessTimers[3] (
+	IN := POU_CNTRL_M1.ActualStep = 100,
+	PT := T#1S,
+);
+
+ProcessTimers[4] (
+	IN := POU_CNTRL_M1.ActualStep = 100 AND ProcessTimers[3].Q,
+	PT := T#3S,
+);
+
+ProcessTimers[5] (
+	IN := POU_CNTRL_M1.ActualStep = 150,
+	PT := T#0S,
+);
+
+ProcessTimers[6] (
+	IN := POU_CNTRL_M1.ActualStep = 180,
+	PT := T#1S,
+);
+
+ProcessTimers[7] (
+	IN := POU_CNTRL_M1.ActualStep = 180 AND ProcessTimers[6].Q,
+	PT := T#1S,
+);
+
+ProcessTimers[8] (
+	IN := POU_CNTRL_M1.ActualStep = 190,
+	PT := T#5S,
+);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

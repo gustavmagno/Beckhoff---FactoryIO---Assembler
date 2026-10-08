@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="M1_AUX" Id="{6bbe7c60-acb3-44ce-8c7b-c7d66b25a177}">
+    <Declaration><![CDATA[VAR_GLOBAL
+	ProcessTimers : ARRAY [0..20] OF TON;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="POU_OUT" Id="{0b3f2007-d80a-43c1-9080-436331dab7b1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM POU_OUT
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FioOutputs[0].0 := TO_BIT(bMoveX);
+FioOutputs[0].1 := TO_BIT(bMoveZ);
+FioOutputs[0].2 := TO_BIT(bGrab);
+FioOutputs[0].3 := TO_BIT(bLidsConveyor);
+FioOutputs[0].4 := TO_BIT(bClampLid);
+FioOutputs[0].5 := TO_BIT(bPosRaiseLids);
+FioOutputs[0].6 := TO_BIT(bBasesConveyor);
+FioOutputs[0].7 := TO_BIT(bClampBase);
+FioOutputs[1].0 := TO_BIT(bPosRaiseBases);
+FioOutputs[1].1 := TO_BIT(bStartLight);
+FioOutputs[1].2 := TO_BIT(bResetLight);
+FioOutputs[1].3 := TO_BIT(bStopLight);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

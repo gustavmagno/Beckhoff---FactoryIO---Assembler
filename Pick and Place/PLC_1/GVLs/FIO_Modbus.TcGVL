@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="FIO_Modbus" Id="{f0652f86-660b-44a4-8347-b07934b026dd}">
+    <Declaration><![CDATA[VAR_GLOBAL
+	FioInputs : ARRAY [0..15] OF BYTE;
+	FioOutputs : ARRAY [0..15] OF BYTE;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

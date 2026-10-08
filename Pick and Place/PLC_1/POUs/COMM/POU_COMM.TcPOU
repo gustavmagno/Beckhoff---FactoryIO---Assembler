@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="POU_COMM" Id="{a705f956-1f3a-41c6-b513-4bd4bb1e7804}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM POU_COMM
+VAR
+	FBReadInputs : FB_MBReadInputs;
+	FBWriteCoils : FB_MBWriteCoils;
+	InputError : UDINT;
+	OutputError : UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FBReadInputs (
+	sIPAddr := '127.0.0.1',
+	nTCPPort := 505,
+	nUnitID := 255,
+	nQuantity := 16,
+	nMBAddr := 0,
+	cbLength := SIZEOF(FioInputs),
+	pDestAddr := ADR(FioInputs),
+	bExecute := TRUE,
+	tTimeout := T#1S,
+	bBusy => ,
+	bError => ,
+	nErrId => InputError,
+	cbRead => ,
+);
+FBReadInputs(bExecute := FALSE);
+
+
+FBWriteCoils (
+	sIPAddr := '127.0.0.1',
+	nTCPPort := 505,
+	nUnitID := 255,
+	nQuantity := 16,
+	nMBAddr := 0,
+	cbLength := SIZEOF(FIOOutputs),
+	pSrcAddr := ADR(FIOOutputs),
+	bExecute := TRUE,
+	tTimeout := T#1S,
+	bBusy => ,
+	bError => ,
+	nErrId => OutputError,
+	
+);
+FBWriteCoils(bExecute := FALSE);
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

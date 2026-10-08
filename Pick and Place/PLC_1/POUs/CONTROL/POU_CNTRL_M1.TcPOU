@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="POU_CNTRL_M1" Id="{4cf56d6b-033e-4b7b-b83a-72db23460dee}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM POU_CNTRL_M1
+VAR
+	ActualStep : INT;
+	NextStep : INT;
+	FTrigLidAtPlace : F_TRig;
+	FTRigBaseAtPlace : F_Trig;
+	LidAtPlacePulse : BOOL;
+	BaseAtPlacePulse : BOOL;
+	FTrigPartLeaving : F_TRig;
+	PartLeavingPulse : BOOL;
+	ProcessStart : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF ActualStep <> NextStep THEN
+	ActualStep := NextStep;
+END_IF
+
+IF (NOT bStop OR bReset) THEN
+	NextStep := 0;
+	ProcessStart := FALSE;
+END_IF
+
+IF bAuto AND bStart AND (bStop OR NOT bReset) THEN
+	ProcessStart := TRUE;
+END_IF
+
+CASE ActualStep OF
+	// machine stopped/reset
+	0: 
+		IF ActualStep = 0 AND NOT bAuto OR NOT bStart  THEN
+			bClampBase := FALSE;
+			bClampLid := FALSE;
+			bMoveX := FALSE;
+			bMoveZ := FALSE;
+			bLidsConveyor := FALSE;
+			bBasesConveyor := FALSE;
+			bGrab := FALSE;
+			bPosRaiseBases := FALSE;
+		END_IF
+	
+		IF ProcessStart THEN
+			bLidsConveyor := TRUE;
+			bBasesConveyor := TRUE;
+			NextStep := 20;
+		END_IF
+	
+	//stop both conveyors
+	20: 
+		FTRigLidAtPlace (
+			CLK := bLidAtPlace,
+			Q => LidAtPlacePulse,
+		);
+		FTRigBaseAtPlace (
+			CLK := bBaseAtPlace,
+			Q => BaseAtPlacePulse,
+		);
+		
+		IF BaseAtPlacePulse THEN
+			bBasesConveyor := FALSE;
+		END_IF
+		
+		IF LidAtPlacePulse THEN
+			bLidsConveyor := FALSE;
+		END_IF
+		IF (NOT bLidsConveyor AND NOT bBasesConveyor) THEN
+		NextStep := 50;
+		END_IF
+	
+	// turn on clamp products 	
+	50:
+		IF NOT bLidAtPlace AND NOT bBaseAtPlace THEN
+			bClampLid := TRUE;
+			bClampBase := TRUE;
+		END_IF
+		
+		IF bLidClamped AND bBaseClamped AND ProcessTimers[0].Q THEN
+			NextStep := 70;
+		ENd_IF
+	
+	// move z and turn on grab	
+	70:	
+		IF bLidClamped THEN
+			bMoveZ := TRUE;
+			IF bItemDetected THEN
+				bGrab := TRUE;
+			END_IF
+		END_IF
+		
+		IF bMoveZ AND bGrab AND ProcessTimers[1].Q THEN
+		NextStep := 80;
+		END_IF
+	
+	// turn off z position	
+	80:	
+		IF bGrab AND bItemDetected THEN
+				bMoveZ := FALSE;
+		END_IF
+		
+		IF NOT bMoveZ AND ProcessTimers[2].Q THEN
+			NextStep := 100;
+		END_IF
+	
+	// move x and z positions
+	100: 	
+		IF (NOT bMoveX AND NOT bMovingX AND NOT bMoveZ AND NOT bMovingZ) THEN
+			bMoveX := TRUE;
+		END_IF
+		IF NOT bMovingX AND bMoveX AND NOT bMoveZ AND ProcessTimers[3].Q THEN
+			bMoveZ := TRUE;
+		END_IF
+		
+		IF (bMoveX AND bMoveZ AND ProcessTimers[4].Q) THEN
+			bClampLid := FALSE;	
+			NextStep := 150;
+		END_IF
+	
+	// 	turn off grab
+	150:
+		IF bMoveX AND bMoveZ THEN
+			bGrab := FALSE;
+		END_IF
+		IF NOT bGrab AND ProcessTimers[5].Q THEN
+		NextStep := 180;
+		END_IF
+		
+	// turn off z and x position	
+	180:
+		bClampBase := FALSE;
+		
+		IF NOT bClampBase THEN
+			bMoveZ := FALSE;
+			IF NOT bMoveZ AND NOT bMovingZ AND ProcessTimers[6].Q THEN
+				bMoveX := FALSE;
+			END_IF	
+		END_IF
+		IF NOT bMoveZ AND NOT bMoveX AND NOT ProcessTimers[7].Q THEN
+		NextStep := 190;
+		END_IF
+	
+	// Raise base positioner, turn on base conveyor, wait for sensor and turn off base positioner 
+	190:
+		bPosRaiseBases := TRUE;
+		FTrigPartLeaving (
+			CLK := bPartLiving,
+			Q => PartLeavingPulse,
+		);
+		
+		IF bPosRaiseBases AND bPosAtLimitBases THEN
+			bBasesConveyor := TRUE;
+		END_IF
+		
+		IF bBasesConveyor AND PartLeavingPulse THEN
+			bPosRaiseBases := FALSE;
+		END_IF
+		
+		IF (bBasesConveyor AND NOT bPosRaiseBases AND bPosAtLimitBases) THEN
+			NextStep := 200;
+		END_IF
+		
+	// waits all conditions met and start machine again	
+	200:
+		IF (NOT bClampBase AND NOT bClampLid AND NOT bMoveX AND NOT bMovingX AND NOT bMoveZ AND NOT bMovingZ) THEN
+ 				NextStep := 0;
+		END_IF
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

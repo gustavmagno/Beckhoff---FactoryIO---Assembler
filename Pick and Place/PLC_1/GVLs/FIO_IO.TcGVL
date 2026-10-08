@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="FIO_IO" Id="{79e2d207-fc41-43fa-a308-ca6bb6818065}">
+    <Declaration><![CDATA[VAR_GLOBAL
+	// INPUTS
+	bMovingX : BOOL;
+	bMovingZ : BOOL;
+	bItemDetected : BOOL;
+	bLidAtPlace : BOOL;
+	bLidClamped : BOOL;
+	bPosAtLimitLids : BOOL;
+	bBaseAtPlace : BOOL;
+	bBaseClamped : BOOL;
+	bPosAtLimitBases : BOOL;
+	bPartLiving : BOOL;
+	bStart: BOOL;
+	bReset : BOOL;
+	bStop : BOOL;
+	bEStop : BOOL;
+	bAuto : BOOL;
+	
+	//OUTPUTS
+	bMoveX : BOOL;
+	bMoveZ : BOOL;
+	bGrab : BOOL;
+	bLidsConveyor : BOOL;
+	bClampLid : BOOL;
+	bPosRaiseLids : BOOL;
+	bBasesConveyor : BOOL;
+	bClampBase : BOOL;
+	bPosRaiseBases : BOOL;
+	bStartLight : BOOL;
+	bResetLight : BOOL;
+	bStopLight : BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
