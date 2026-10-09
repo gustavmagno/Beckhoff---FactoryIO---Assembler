@@ -793,6 +793,91 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.FIO_IO.bBaseAtPlace": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bBaseAtPlace",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bBaseClamped": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bBaseClamped",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bBasesConveyor": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bBasesConveyor",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bClampBase": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bClampBase",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bClampLid": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bClampLid",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.FIO_IO.bGrab": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -815,6 +900,57 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::FIO_IO::bItemDetected",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bLidAtPlace": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bLidAtPlace",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bLidClamped": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bLidClamped",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bLidsConveyor": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bLidsConveyor",
             "SCHEMA": {
                 "allOf": [
                     {
@@ -997,6 +1133,16 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::POU_CNTRL_M1::ProcessStart",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.POU_CNTRL_M1.hmibAuto": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::POU_CNTRL_M1::hmibAuto",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -4025,8 +4171,16 @@
                 "ADS.AdsSyncReadStateReq": 3,
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
+                "ADS.PLC1.FIO_IO.bBaseAtPlace": 3,
+                "ADS.PLC1.FIO_IO.bBaseClamped": 3,
+                "ADS.PLC1.FIO_IO.bBasesConveyor": 3,
+                "ADS.PLC1.FIO_IO.bClampBase": 3,
+                "ADS.PLC1.FIO_IO.bClampLid": 3,
                 "ADS.PLC1.FIO_IO.bGrab": 3,
                 "ADS.PLC1.FIO_IO.bItemDetected": 3,
+                "ADS.PLC1.FIO_IO.bLidAtPlace": 3,
+                "ADS.PLC1.FIO_IO.bLidClamped": 3,
+                "ADS.PLC1.FIO_IO.bLidsConveyor": 3,
                 "ADS.PLC1.FIO_IO.bMoveX": 3,
                 "ADS.PLC1.FIO_IO.bMoveZ": 3,
                 "ADS.PLC1.FIO_IO.bMovingX": 3,
@@ -4038,6 +4192,7 @@
                 "ADS.PLC1.FIO_IO.bPosRaiseLids": 3,
                 "ADS.PLC1.FIO_IO.bStart": 3,
                 "ADS.PLC1.POU_CNTRL_M1.ProcessStart": 3,
+                "ADS.PLC1.POU_CNTRL_M1.hmibAuto": 3,
                 "ADS.PLC1.POU_CNTRL_M1.hmibStart": 3,
                 "ADS.PLC1.POU_CNTRL_M1.hmibStop": 3,
                 "ChangeUserSettings": 3,

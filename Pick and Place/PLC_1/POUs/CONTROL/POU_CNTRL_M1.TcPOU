@@ -34,7 +34,7 @@ END_IF
 CASE ActualStep OF
 	// machine stopped/reset
 	0: 
-		IF ActualStep = 0 AND NOT bAuto OR NOT bStart  THEN
+		IF ActualStep = 0 AND (NOT bAuto OR NOT hmibAuto) OR (NOT bStart OR NOT hmibStart)  THEN
 			bClampBase := FALSE;
 			bClampLid := FALSE;
 			bMoveX := FALSE;
@@ -45,7 +45,7 @@ CASE ActualStep OF
 			bPosRaiseBases := FALSE;
 		END_IF
 	
-		IF ProcessStart THEN
+		IF ProcessStart AND (NOT hmibStop OR hmibStop) THEN
 			bLidsConveyor := TRUE;
 			bBasesConveyor := TRUE;
 			NextStep := 20;
