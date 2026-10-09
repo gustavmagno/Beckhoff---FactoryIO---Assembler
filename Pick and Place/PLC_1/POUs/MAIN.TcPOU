@@ -8,8 +8,8 @@ END_VAR
     <Implementation>
       <ST><![CDATA[POU_COMM();
 POU_IN();
-POU_CNTRL_M1_AUX();
 POU_CNTRL_M1();
+POU_CNTRL_M1_AUX();
 POU_OUT();
 ]]></ST>
     </Implementation>

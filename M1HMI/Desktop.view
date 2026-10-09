@@ -19,7 +19,7 @@
     data-tchmi-width="194"
     data-tchmi-height="57"
   ></div>
-<div id="TcHmiButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="192" data-tchmi-left-unit="px" data-tchmi-text="Button" data-tchmi-top="309" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True">
+<div id="TcHmiButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="192" data-tchmi-left-unit="px" data-tchmi-text="Start Process" data-tchmi-top="304" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-state-symbol="%s%ADS.PLC1.FIO_IO.bStart%/s%">
 
 
 </div>

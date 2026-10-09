@@ -3,34 +3,61 @@
   <GVL Name="FIO_IO" Id="{79e2d207-fc41-43fa-a308-ca6bb6818065}">
     <Declaration><![CDATA[VAR_GLOBAL
 	// INPUTS
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bMovingX : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bMovingZ : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bItemDetected : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bLidAtPlace : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bLidClamped : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bPosAtLimitLids : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bBaseAtPlace : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bBaseClamped : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bPosAtLimitBases : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bPartLiving : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bStart: BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bReset : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bStop : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bEStop : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bAuto : BOOL;
 	
 	//OUTPUTS
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bMoveX : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bMoveZ : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bGrab : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bLidsConveyor : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bClampLid : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bPosRaiseLids : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bBasesConveyor : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bClampBase : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bPosRaiseBases : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bStartLight : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bResetLight : BOOL;
+	{attribute 'TcHmiSymbol.AddSymbol'}
 	bStopLight : BOOL;
 END_VAR]]></Declaration>
   </GVL>

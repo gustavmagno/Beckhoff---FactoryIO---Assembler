@@ -59,11 +59,11 @@ CASE ActualStep OF
 			Q => BaseAtPlacePulse,
 		);
 		
-		IF BaseAtPlacePulse THEN
+		IF BaseAtPlacePulse AND NOT bBaseClamped THEN
 			bBasesConveyor := FALSE;
 		END_IF
 		
-		IF LidAtPlacePulse THEN
+		IF LidAtPlacePulse AND NOT bLidClamped THEN
 			bLidsConveyor := FALSE;
 		END_IF
 		IF (NOT bLidsConveyor AND NOT bBasesConveyor) THEN
@@ -85,19 +85,22 @@ CASE ActualStep OF
 	70:	
 		IF bLidClamped THEN
 			bMoveZ := TRUE;
-			IF bItemDetected THEN
+			IF bMoveZ AND bItemDetected THEN
+				bClampLid := FALSE;
+			END_IF
+			IF bItemDetected AND NOT bClampLid THEN
 				bGrab := TRUE;
 			END_IF
 		END_IF
 		
 		IF bMoveZ AND bGrab AND ProcessTimers[1].Q THEN
-		NextStep := 80;
+			NextStep := 80;
 		END_IF
 	
 	// turn off z position	
 	80:	
 		IF bGrab AND bItemDetected THEN
-				bMoveZ := FALSE;
+			bMoveZ := FALSE;
 		END_IF
 		
 		IF NOT bMoveZ AND ProcessTimers[2].Q THEN
@@ -114,7 +117,7 @@ CASE ActualStep OF
 		END_IF
 		
 		IF (bMoveX AND bMoveZ AND ProcessTimers[4].Q) THEN
-			bClampLid := FALSE;	
+			// bClampLid := FALSE;	
 			NextStep := 150;
 		END_IF
 	
@@ -124,7 +127,7 @@ CASE ActualStep OF
 			bGrab := FALSE;
 		END_IF
 		IF NOT bGrab AND ProcessTimers[5].Q THEN
-		NextStep := 180;
+			NextStep := 180;
 		END_IF
 		
 	// turn off z and x position	
@@ -151,6 +154,7 @@ CASE ActualStep OF
 		
 		IF bPosRaiseBases AND bPosAtLimitBases THEN
 			bBasesConveyor := TRUE;
+			bLidsConveyor := TRUE;
 		END_IF
 		
 		IF bBasesConveyor AND PartLeavingPulse THEN
