@@ -12,6 +12,9 @@ VAR
 	FTrigPartLeaving : F_TRig;
 	PartLeavingPulse : BOOL;
 	ProcessStart : BOOL;
+	hmibStart : BOOL;
+	hmibAuto : BOOL;
+	hmibStop : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,12 +22,12 @@ END_VAR
 	ActualStep := NextStep;
 END_IF
 
-IF (NOT bStop OR bReset) THEN
+IF (NOT bStop OR bReset OR hmibStop) THEN
 	NextStep := 0;
 	ProcessStart := FALSE;
 END_IF
 
-IF bAuto AND bStart AND (bStop OR NOT bReset) THEN
+IF (bAuto OR hmibAuto) AND (bStart OR hmibStart) AND (bStop OR NOT bReset) THEN
 	ProcessStart := TRUE;
 END_IF
 

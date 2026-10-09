@@ -793,11 +793,230 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.FIO_IO.bGrab": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bGrab",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bItemDetected": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bItemDetected",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bMoveX": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bMoveX",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true,
+                        "comment": "OUTPUTS"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bMoveZ": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bMoveZ",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bMovingX": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bMovingX",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true,
+                        "comment": "INPUTS"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bMovingZ": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bMovingZ",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bPartLiving": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bPartLiving",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bPosAtLimitBases": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bPosAtLimitBases",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bPosAtLimitLids": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bPosAtLimitLids",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bPosRaiseBases": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bPosRaiseBases",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.FIO_IO.bPosRaiseLids": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::FIO_IO::bPosRaiseLids",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "addSymbol": true
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.FIO_IO.bStart": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::FIO_IO::bStart",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.POU_CNTRL_M1.ProcessStart": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::POU_CNTRL_M1::ProcessStart",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.POU_CNTRL_M1.hmibStart": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::POU_CNTRL_M1::hmibStart",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.POU_CNTRL_M1.hmibStop": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::POU_CNTRL_M1::hmibStop",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -3806,7 +4025,21 @@
                 "ADS.AdsSyncReadStateReq": 3,
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
+                "ADS.PLC1.FIO_IO.bGrab": 3,
+                "ADS.PLC1.FIO_IO.bItemDetected": 3,
+                "ADS.PLC1.FIO_IO.bMoveX": 3,
+                "ADS.PLC1.FIO_IO.bMoveZ": 3,
+                "ADS.PLC1.FIO_IO.bMovingX": 3,
+                "ADS.PLC1.FIO_IO.bMovingZ": 3,
+                "ADS.PLC1.FIO_IO.bPartLiving": 3,
+                "ADS.PLC1.FIO_IO.bPosAtLimitBases": 3,
+                "ADS.PLC1.FIO_IO.bPosAtLimitLids": 3,
+                "ADS.PLC1.FIO_IO.bPosRaiseBases": 3,
+                "ADS.PLC1.FIO_IO.bPosRaiseLids": 3,
                 "ADS.PLC1.FIO_IO.bStart": 3,
+                "ADS.PLC1.POU_CNTRL_M1.ProcessStart": 3,
+                "ADS.PLC1.POU_CNTRL_M1.hmibStart": 3,
+                "ADS.PLC1.POU_CNTRL_M1.hmibStop": 3,
                 "ChangeUserSettings": 3,
                 "ConfirmAlarm": 3,
                 "CreateEvent": 3,
