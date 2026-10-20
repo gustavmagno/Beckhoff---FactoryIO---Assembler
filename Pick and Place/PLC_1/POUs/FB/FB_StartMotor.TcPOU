@@ -131,11 +131,55 @@ END_VAR
         "$type": "Sequence",
         "Elements": [
           {
-            "$type": "Contact",
-            "Operand": {
-              "$type": "Operand",
-              "Expression": "intnbEstop"
-            }
+            "$type": "ParallelClosed",
+            "Branches": [
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "intnbEstop"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "intnbEstop",
+                      "Modifier": {
+                        "$type": "Modifier",
+                        "Negation": true
+                      }
+                    }
+                  },
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "intnbMotorOn",
+                      "Modifier": {
+                        "$type": "Modifier",
+                        "Negation": true
+                      }
+                    }
+                  },
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "ibSimulMode"
+                    }
+                  }
+                ]
+              }
+            ]
           },
           {
             "$type": "Contact",
@@ -145,7 +189,7 @@ END_VAR
             }
           },
           {
-            "$type": "Contact",
+            "$type": "Coil",
             "Operand": {
               "$type": "Operand",
               "Expression": "intnbOkToStart"
@@ -316,14 +360,72 @@ END_VAR
       "$type": "Network",
       "Id": "2BLCaacr",
       "Sequence": {
-        "$type": "Sequence"
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbRunMotor"
+            }
+          },
+          {
+            "$type": "ParallelOpen",
+            "Branches": [
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "obStsMotorRunning"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "obOutputEnergize"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     },
     {
       "$type": "Network",
       "Id": "pAgNnuh_",
       "Sequence": {
-        "$type": "Sequence"
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbRunMotor",
+              "Modifier": {
+                "$type": "Modifier",
+                "Negation": true
+              }
+            }
+          },
+          {
+            "$type": "Coil",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "obStsMotorStopped"
+            }
+          }
+        ]
       }
     },
     {
