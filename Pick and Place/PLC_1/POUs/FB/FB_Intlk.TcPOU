@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_Intlk" Id="{ca150a95-1d6e-4e9e-9690-c2922e5b5c6a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Intlk
+VAR_INPUT
+	ForwardInterlock01 : BOOL;
+	ForwardInterlock02 : BOOL;
+	ForwardInterlock03 : BOOL;
+	ForwardInterlock04 : BOOL;
+	ForwardInterlock05 : BOOL;
+	ForwardInterlock06 : BOOL;
+	BackwardsInterlock01 : BOOL;
+	BackwardsInterlock02 : BOOL;
+	BackwardsInterlock03 : BOOL;
+	BackwardsInterlock04 : BOOL;
+	BackwardsInterlock05 : BOOL;
+	BackwardsInterlock06 : BOOL;
+END_VAR
+VAR_OUTPUT
+	stsForwardIntlkOK: BOOL;
+	stsBackwardsIntlkOK: BOOL;
+	stsIntlkOK : BOOL;
+END_VAR
+VAR
+	intnFrwdIntlkOK : BOOL;
+	intnBckwIntlkOK : bool;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <LADDER>
+        <XmlArchive>
+          <Data>
+            <o xml:space="preserve" t="LadderImplementationObject">
+              <v n="ModelJson">"{
+  "$type": "LadderDataModel",
+  "Networks": [
+    {
+      "$type": "Network",
+      "Id": "b32oXGD9",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ForwardInterlock01"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ForwardInterlock02"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ForwardInterlock03"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ForwardInterlock04"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ForwardInterlock05"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ForwardInterlock06"
+            }
+          },
+          {
+            "$type": "Coil",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnFrwdIntlkOK"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "chX6MqU9",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "BackwardsInterlock01"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "BackwardsInterlock02"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "BackwardsInterlock03"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "BackwardsInterlock04"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "BackwardsInterlock05"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "BackwardsInterlock06"
+            }
+          },
+          {
+            "$type": "Coil",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnBckwIntlkOK"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "Nj5c2-Fh",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "ParallelOpen",
+            "Branches": [
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "intnFrwdIntlkOK"
+                    }
+                  },
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "intnBckwIntlkOK"
+                    }
+                  },
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "stsIntlkOK"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "intnFrwdIntlkOK"
+                    }
+                  },
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "stsForwardIntlkOK"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "intnBckwIntlkOK"
+                    }
+                  },
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "stsBackwardsIntlkOK"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}"</v>
+            </o>
+          </Data>
+          <TypeList>
+            <Type n="LadderImplementationObject">{f0fda5b8-8c48-4377-bbd5-c49444e4d26e}</Type>
+            <Type n="String">System.String</Type>
+          </TypeList>
+        </XmlArchive>
+      </LADDER>
+    </Implementation>
+  </POU>
+</TcPlcObject>

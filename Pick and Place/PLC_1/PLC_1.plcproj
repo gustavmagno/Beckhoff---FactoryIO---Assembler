@@ -42,6 +42,9 @@
     <Compile Include="POUs\CONTROL\POU_CNTRL_M1_AUX.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB\FB_Intlk.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +61,7 @@
     <Folder Include="POUs\COMM" />
     <Folder Include="POUs\MAPPING" />
     <Folder Include="POUs\CONTROL" />
+    <Folder Include="POUs\FB" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
