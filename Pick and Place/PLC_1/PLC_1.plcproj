@@ -67,6 +67,12 @@
     <Compile Include="POUs\MAPPING\POU_OUT.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\PRG\EQUIPMENTS\POU_ClampBase.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\PRG\EQUIPMENTS\POU_ClampLid.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\PRG\MOTORS\POU_LidsConveyor.TcPOU">
       <SubType>Code</SubType>
     </Compile>

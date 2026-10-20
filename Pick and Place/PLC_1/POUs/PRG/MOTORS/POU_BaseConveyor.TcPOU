@@ -34,7 +34,7 @@ END_VAR
                     "$type": "Contact",
                     "Operand": {
                       "$type": "Operand",
-                      "Expression": "???",
+                      "Expression": "POU_ClampBase.fbStartEquipment.obEquipOn",
                       "Modifier": {
                         "$type": "Modifier",
                         "Negation": true

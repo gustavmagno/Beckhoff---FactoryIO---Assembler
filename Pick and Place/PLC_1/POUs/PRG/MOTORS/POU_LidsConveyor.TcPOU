@@ -34,7 +34,7 @@ END_VAR
                     "$type": "Contact",
                     "Operand": {
                       "$type": "Operand",
-                      "Expression": "???",
+                      "Expression": "POU_ClampLid.fbStartEquipment.obEquipOn",
                       "Modifier": {
                         "$type": "Modifier",
                         "Negation": true
@@ -630,7 +630,8 @@ END_VAR
                           "OutVariable": {
                             "$type": "OutVariable",
                             "Operand": {
-                              "$type": "Operand"
+                              "$type": "Operand",
+                              "Expression": "bEq[0]"
                             }
                           }
                         }
@@ -639,33 +640,11 @@ END_VAR
                       "Eno": true
                     },
                     {
-                      "$type": "ParallelOpen",
-                      "Branches": [
-                        {
-                          "$type": "Sequence",
-                          "Elements": [
-                            {
-                              "$type": "Contact",
-                              "Operand": {
-                                "$type": "Operand",
-                                "Expression": "bEQ[0]"
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "$type": "Sequence",
-                          "Elements": [
-                            {
-                              "$type": "Contact",
-                              "Operand": {
-                                "$type": "Operand",
-                                "Expression": "???"
-                              }
-                            }
-                          ]
-                        }
-                      ]
+                      "$type": "Contact",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "bEQ[0]"
+                      }
                     }
                   ]
                 }

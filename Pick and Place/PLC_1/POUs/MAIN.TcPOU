@@ -8,8 +8,23 @@ END_VAR
     <Implementation>
       <ST><![CDATA[POU_COMM();
 POU_IN();
+
+
+
+// SENSORS
+
+
+//MOTORS
+POU_BaseConveyor();
+POU_LidsConveyor();
+
+//EQUIPMENTS
+POU_Clam
+
+// CNTRL
 POU_CNTRL_M1();
 POU_CNTRL_M1_AUX();
+
 POU_OUT();
 ]]></ST>
     </Implementation>
