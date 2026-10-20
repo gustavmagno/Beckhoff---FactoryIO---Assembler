@@ -19,7 +19,8 @@ POU_BaseConveyor();
 POU_LidsConveyor();
 
 //EQUIPMENTS
-POU_Clam
+POU_ClampBase();
+POU_ClampLid();
 
 // CNTRL
 POU_CNTRL_M1();
