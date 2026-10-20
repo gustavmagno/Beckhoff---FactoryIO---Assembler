@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_StartEquipment" Id="{fded47a0-e590-4d71-bd16-8ed8c93ad3bc}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StartEquipment
+VAR_INPUT
+	ibIntlkOK : BOOL;
+	ibStartEquipment : BOOL;
+END_VAR
+VAR_OUTPUT
+	obOuputEnergize : BOOL;
+	obEquipOn : bool;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <LADDER>
+        <XmlArchive>
+          <Data>
+            <o xml:space="preserve" t="LadderImplementationObject">
+              <v n="ModelJson">"{
+  "$type": "LadderDataModel",
+  "Networks": [
+    {
+      "$type": "Network",
+      "Id": "Cr0v2MPx",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibIntlkOK"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibStartEquipment"
+            }
+          },
+          {
+            "$type": "ParallelOpen",
+            "Branches": [
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "obEquipOn"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "obEquipOn"
+                    }
+                  },
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "obOuputEnergize"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}"</v>
+            </o>
+          </Data>
+          <TypeList>
+            <Type n="LadderImplementationObject">{f0fda5b8-8c48-4377-bbd5-c49444e4d26e}</Type>
+            <Type n="String">System.String</Type>
+          </TypeList>
+        </XmlArchive>
+      </LADDER>
+    </Implementation>
+  </POU>
+</TcPlcObject>

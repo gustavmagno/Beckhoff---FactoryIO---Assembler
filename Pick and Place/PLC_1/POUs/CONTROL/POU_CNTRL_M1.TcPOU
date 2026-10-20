@@ -15,6 +15,7 @@ VAR
 	hmibStart : BOOL;
 	hmibAuto : BOOL;
 	hmibStop : BOOL;
+	intnbStop : bool;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -22,37 +23,32 @@ END_VAR
 	ActualStep := NextStep;
 END_IF
 
-IF (NOT bStop OR bReset OR hmibStop) THEN
+IF  bReset THEN
 	NextStep := 0;
 	ProcessStart := FALSE;
 END_IF
 
 IF (bAuto OR hmibAuto) AND (bStart OR hmibStart) AND (bStop OR NOT bReset) THEN
-	ProcessStart := TRUE;
+	ProcessStart := TRUE;	
 END_IF
+
+IF NOT bStop THEN
+	intnbStop := TRUE;
+ELSIF (bStart AND bStop) THEN
+	intnbStop := FALSE;
+END_IF 
 
 CASE ActualStep OF
 	// machine stopped/reset
 	0: 
-		IF ActualStep = 0 AND (NOT bAuto OR NOT hmibAuto) OR (NOT bStart OR NOT hmibStart)  THEN
-			bClampBase := FALSE;
-			bClampLid := FALSE;
-			bMoveX := FALSE;
-			bMoveZ := FALSE;
-			bLidsConveyor := FALSE;
-			bBasesConveyor := FALSE;
-			bGrab := FALSE;
-			bPosRaiseBases := FALSE;
-		END_IF
-	
-		IF ProcessStart AND (NOT hmibStop OR hmibStop) THEN
-			bLidsConveyor := TRUE;
-			bBasesConveyor := TRUE;
+		IF ProcessStart THEN
+			IF POU_LidsConveyor.fbStartMotor.obStsMotorRunning THEN 
 			NextStep := 20;
+			END_IF
 		END_IF
-	
+
 	//stop both conveyors
-	20: 
+	(*20: 
 		FTRigLidAtPlace (
 			CLK := bLidAtPlace,
 			Q => LidAtPlacePulse,
@@ -71,7 +67,7 @@ CASE ActualStep OF
 		END_IF
 		IF (NOT bLidsConveyor AND NOT bBasesConveyor) THEN
 		NextStep := 50;
-		END_IF
+		END_IF *)
 	
 	// turn on clamp products 	
 	50:

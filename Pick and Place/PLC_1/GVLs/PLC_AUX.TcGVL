@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="PLC_AUX" Id="{10a5703c-7e3c-4129-a3e2-ead9c5b55714}">
+    <Declaration><![CDATA[VAR_GLOBAL
+	AlwaysTrue : BOOL := 1;
+	AlwaysFalse : BOOL := 0;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="POU_LidsConveyor" Id="{218aeeba-3fa5-4216-8ff2-c57f35e963a4}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM POU_LidsConveyor
+VAR
+	fbMotorInterlock : FB_Intlk;
+	fbStartMotor : FB_StartMotor;
+	bEQ : ARRAY [0..15] OF BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <LADDER>
+        <XmlArchive>
+          <Data>
+            <o xml:space="preserve" t="LadderImplementationObject">
+              <v n="ModelJson">"{
+  "$type": "LadderDataModel",
+  "Networks": [
+    {
+      "$type": "Network",
+      "Id": "K14s4NXY",
+      "Title": "FORWARD INTERLOCK\r\n",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "ParallelOpen",
+            "Branches": [
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "???",
+                      "Modifier": {
+                        "$type": "Modifier",
+                        "Negation": true
+                      }
+                    }
+                  },
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibForwardInterlock01"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibForwardInterlock02"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibForwardInterlock03"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibForwardInterlock04"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibForwardInterlock05"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibForwardInterlock06"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "ziAed_AA",
+      "Title": "BACKWARDS INTERLOCK\r\n",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "ParallelOpen",
+            "Branches": [
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibBackwardsInterlock01"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibBackwardsInterlock02"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibBackwardsInterlock03"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibBackwardsInterlock04"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibBackwardsInterlock05"
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Sequence",
+                "Elements": [
+                  {
+                    "$type": "Coil",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "fbMotorInterlock.ibBackwardsInterlock06"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "jF7LK83D",
+      "Title": "INTERLOCK BLOCK\r\n",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Block",
+            "BlockType": "FB_Intlk",
+            "Instance": {
+              "$type": "Operand",
+              "Expression": "fbMotorInterlock"
+            },
+            "CallType": 2,
+            "Inputs": [
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "EN"
+                },
+                "Sequence": {
+                  "$type": "Sequence"
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibForwardInterlock01"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibForwardInterlock02"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibForwardInterlock03"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibForwardInterlock04"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibForwardInterlock05"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibForwardInterlock06"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibBackwardsInterlock01"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibBackwardsInterlock02"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibBackwardsInterlock03"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibBackwardsInterlock04"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibBackwardsInterlock05"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibBackwardsInterlock06"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "Outputs": [
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ENO"
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obStsForwardIntlkOK"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obStsBackwardsIntlkOK"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obStsIntlkOK"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              }
+            ],
+            "En": true,
+            "Eno": true
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "U8smqxTQ",
+      "Title": "MOTOR START BLOCK",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Block",
+            "BlockType": "FB_StartMotor",
+            "Instance": {
+              "$type": "Operand",
+              "Expression": "fbStartMotor"
+            },
+            "CallType": 2,
+            "Inputs": [
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "EN"
+                },
+                "Sequence": {
+                  "$type": "Sequence"
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibMotorOn"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "AlwaysTrue"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibStartMotor"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "Contact",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "POU_CNTRL_M1.ProcessStart"
+                      }
+                    },
+                    {
+                      "$type": "Block",
+                      "BlockType": "GE",
+                      "Instance": {
+                        "$type": "Operand"
+                      },
+                      "Inputs": [
+                        {
+                          "$type": "Input",
+                          "Pin": {
+                            "$type": "Pin",
+                            "Name": "EN"
+                          },
+                          "Sequence": {
+                            "$type": "Sequence"
+                          }
+                        },
+                        {
+                          "$type": "Input",
+                          "Pin": {
+                            "$type": "Pin"
+                          },
+                          "Sequence": {
+                            "$type": "Sequence",
+                            "Elements": [
+                              {
+                                "$type": "InVariable",
+                                "Operand": {
+                                  "$type": "Operand",
+                                  "Expression": "POU_CNTRL_M1.ActualStep"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "$type": "Input",
+                          "Pin": {
+                            "$type": "Pin"
+                          },
+                          "Sequence": {
+                            "$type": "Sequence",
+                            "Elements": [
+                              {
+                                "$type": "InVariable",
+                                "Operand": {
+                                  "$type": "Operand",
+                                  "Expression": "0"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "Outputs": [
+                        {
+                          "$type": "Output",
+                          "Pin": {
+                            "$type": "Pin",
+                            "Name": "ENO"
+                          }
+                        },
+                        {
+                          "$type": "Output",
+                          "Pin": {
+                            "$type": "Pin"
+                          },
+                          "OutVariable": {
+                            "$type": "OutVariable",
+                            "Operand": {
+                              "$type": "Operand"
+                            }
+                          }
+                        }
+                      ],
+                      "En": true,
+                      "Eno": true
+                    },
+                    {
+                      "$type": "ParallelOpen",
+                      "Branches": [
+                        {
+                          "$type": "Sequence",
+                          "Elements": [
+                            {
+                              "$type": "Contact",
+                              "Operand": {
+                                "$type": "Operand",
+                                "Expression": "bEQ[0]"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$type": "Sequence",
+                          "Elements": [
+                            {
+                              "$type": "Contact",
+                              "Operand": {
+                                "$type": "Operand",
+                                "Expression": "???"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibIntlkOK"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "fbMotorInterlock.obStsIntlkOK"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibEstop"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "AlwaysTrue"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "itTimeToFault"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "T#0S"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ibSimulMode"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "AlwaysFalse"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "Outputs": [
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ENO"
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obStsMotorRunning"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obStsMotorStopped"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obOutputEnergize"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              }
+            ],
+            "En": true,
+            "Eno": true
+          }
+        ]
+      }
+    }
+  ]
+}"</v>
+            </o>
+          </Data>
+          <TypeList>
+            <Type n="LadderImplementationObject">{f0fda5b8-8c48-4377-bbd5-c49444e4d26e}</Type>
+            <Type n="String">System.String</Type>
+          </TypeList>
+        </XmlArchive>
+      </LADDER>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -9,10 +9,10 @@ END_VAR
       <ST><![CDATA[FioOutputs[0].0 := TO_BIT(bMoveX);
 FioOutputs[0].1 := TO_BIT(bMoveZ);
 FioOutputs[0].2 := TO_BIT(bGrab);
-FioOutputs[0].3 := TO_BIT(bLidsConveyor);
+FioOutputs[0].3 := TO_BIT(POU_LidsConveyor.fbStartMotor.obOutputEnergize);
 FioOutputs[0].4 := TO_BIT(bClampLid);
 FioOutputs[0].5 := TO_BIT(bPosRaiseLids);
-FioOutputs[0].6 := TO_BIT(bBasesConveyor);
+FioOutputs[0].6 := TO_BIT(POU_BaseConveyor.fbStartMotor.obOutputEnergize);
 FioOutputs[0].7 := TO_BIT(bClampBase);
 FioOutputs[1].0 := TO_BIT(bPosRaiseBases);
 FioOutputs[1].1 := TO_BIT(bStartLight);
