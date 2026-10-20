@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_StartMotor" Id="{1275068e-30ea-4fe3-be12-78326bb299ff}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StartMotor
+VAR_INPUT
+	ibMotorOn : BOOL;
+	ibStartMotor : BOOL;
+	ibIntlkOK : BOOL;
+	ibEstop : BOOL;
+	itTimeToFault : TIME;
+	ibSimulMode : BOOL;
+END_VAR
+VAR_OUTPUT
+	obStsMotorRunning : BOOL;
+	obStsMotorStopped : BOOL;
+	obOutputEnergize : BOOL;
+END_VAR
+VAR
+	intnbRunMotor : BOOL;
+	intnbIntlkOK : BOOL;
+	intnbEstop : BOOL;
+	intnbOkToStart : BOOL;
+	intnbErrorMotorFeeback : BOOL;
+	intnTmrFalutMotor : TON;
+	intnbMotorOn: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <LADDER>
+        <XmlArchive>
+          <Data>
+            <o xml:space="preserve" t="LadderImplementationObject">
+              <v n="ModelJson">"{
+  "$type": "LadderDataModel",
+  "Networks": [
+    {
+      "$type": "Network",
+      "Id": "Ig8mqe1X",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibMotorOn"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibSimulMode",
+              "Modifier": {
+                "$type": "Modifier",
+                "Negation": true
+              }
+            }
+          },
+          {
+            "$type": "Coil",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbMotorOn"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "0za3tSJc",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibEstop"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibSimulMode",
+              "Modifier": {
+                "$type": "Modifier",
+                "Negation": true
+              }
+            }
+          },
+          {
+            "$type": "Coil",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbEstop"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "hOPgJtc9",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibIntlkOK"
+            }
+          },
+          {
+            "$type": "Coil",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbIntlkOK"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "hvr9-jAs",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbEstop"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbIntlkOK"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbOkToStart"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "FMojd2PP",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "ibStartMotor"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbOkToStart"
+            }
+          },
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbErrorMotorFeeback",
+              "Modifier": {
+                "$type": "Modifier",
+                "Negation": true
+              }
+            }
+          },
+          {
+            "$type": "Coil",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbRunMotor"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "W11YWehZ",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Contact",
+            "Operand": {
+              "$type": "Operand",
+              "Expression": "intnbRunMotor"
+            }
+          },
+          {
+            "$type": "Block",
+            "BlockType": "ton",
+            "Instance": {
+              "$type": "Operand",
+              "Expression": "intnTmrFalutMotor"
+            },
+            "CallType": 2,
+            "Inputs": [
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "EN"
+                },
+                "Sequence": {
+                  "$type": "Sequence"
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "IN"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "Contact",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "intnbMotorOn",
+                        "Modifier": {
+                          "$type": "Modifier",
+                          "Negation": true
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "PT"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "itTimeToFault"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "Outputs": [
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ENO"
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "Q"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand",
+                    "Expression": "intnbErrorMotorFeeback"
+                  }
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ET"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              }
+            ],
+            "En": true,
+            "Eno": true
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "2BLCaacr",
+      "Sequence": {
+        "$type": "Sequence"
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "pAgNnuh_",
+      "Sequence": {
+        "$type": "Sequence"
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "IHMHw145",
+      "Sequence": {
+        "$type": "Sequence"
+      }
+    }
+  ]
+}"</v>
+            </o>
+          </Data>
+          <TypeList>
+            <Type n="LadderImplementationObject">{f0fda5b8-8c48-4377-bbd5-c49444e4d26e}</Type>
+            <Type n="String">System.String</Type>
+          </TypeList>
+        </XmlArchive>
+      </LADDER>
+    </Implementation>
+  </POU>
+</TcPlcObject>
