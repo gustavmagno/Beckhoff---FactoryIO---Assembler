@@ -6,10 +6,16 @@ VAR_INPUT
 	ibSensor : BOOL;
 	ibSensorType : BOOL; // 0 - NO / 1 - NC
 END_VAR
+
 VAR_OUTPUT
 	obSensorOn : BOOL;
+	obPositiveEdge : BOOL;
+	obNegativeEdge : BOOL;
 END_VAR
+
 VAR
+	FTrig : F_TRIG;
+	Rtrig : R_TRIG;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -84,6 +90,154 @@ END_VAR
               "$type": "Operand",
               "Expression": "obSensorOn"
             }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "yLBf-G4p",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Block",
+            "BlockType": "F_TRIG",
+            "Instance": {
+              "$type": "Operand",
+              "Expression": "FTrig"
+            },
+            "CallType": 2,
+            "Inputs": [
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "EN"
+                },
+                "Sequence": {
+                  "$type": "Sequence"
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "CLK"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "ibSensor"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "Outputs": [
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ENO"
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "Q"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand",
+                    "Expression": "obPositiveEdge"
+                  }
+                }
+              }
+            ],
+            "En": true,
+            "Eno": true
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Network",
+      "Id": "GjRVh6cX",
+      "Sequence": {
+        "$type": "Sequence",
+        "Elements": [
+          {
+            "$type": "Block",
+            "BlockType": "R_TRIG",
+            "Instance": {
+              "$type": "Operand",
+              "Expression": "RTrig"
+            },
+            "CallType": 2,
+            "Inputs": [
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "EN"
+                },
+                "Sequence": {
+                  "$type": "Sequence"
+                }
+              },
+              {
+                "$type": "Input",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "CLK"
+                },
+                "Sequence": {
+                  "$type": "Sequence",
+                  "Elements": [
+                    {
+                      "$type": "InVariable",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "ibSensor"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "Outputs": [
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "ENO"
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "Q"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand",
+                    "Expression": "obNegativeEdge"
+                  }
+                }
+              }
+            ],
+            "En": true,
+            "Eno": true
           }
         ]
       }

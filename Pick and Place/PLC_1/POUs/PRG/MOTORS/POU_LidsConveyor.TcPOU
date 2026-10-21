@@ -54,6 +54,17 @@ END_VAR
                 "$type": "Sequence",
                 "Elements": [
                   {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "bStopLidsConveyor",
+                      "Modifier": {
+                        "$type": "Modifier",
+                        "Negation": true
+                      }
+                    }
+                  },
+                  {
                     "$type": "Coil",
                     "Operand": {
                       "$type": "Operand",
@@ -65,6 +76,17 @@ END_VAR
               {
                 "$type": "Sequence",
                 "Elements": [
+                  {
+                    "$type": "Contact",
+                    "Operand": {
+                      "$type": "Operand",
+                      "Expression": "POU_CNTRL_M1.intnbStop",
+                      "Modifier": {
+                        "$type": "Modifier",
+                        "Negation": true
+                      }
+                    }
+                  },
                   {
                     "$type": "Coil",
                     "Operand": {

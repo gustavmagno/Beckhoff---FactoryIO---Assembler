@@ -15,7 +15,8 @@ VAR
 	hmibStart : BOOL;
 	hmibAuto : BOOL;
 	hmibStop : BOOL;
-	intnbStop : bool;
+	intnbStop : BOOL;
+	intnbReset : bool;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -26,10 +27,12 @@ END_IF
 IF  bReset THEN
 	NextStep := 0;
 	ProcessStart := FALSE;
+	intnbReset := TRUE;
 END_IF
 
 IF (bAuto OR hmibAuto) AND (bStart OR hmibStart) AND (bStop OR NOT bReset) THEN
-	ProcessStart := TRUE;	
+	ProcessStart := TRUE;
+	intnbReset := FALSE;	
 END_IF
 
 IF NOT bStop THEN
@@ -48,42 +51,34 @@ CASE ActualStep OF
 		END_IF
 
 	//stop both conveyors
-	(*20: 
-		FTRigLidAtPlace (
-			CLK := bLidAtPlace,
-			Q => LidAtPlacePulse,
-		);
-		FTRigBaseAtPlace (
-			CLK := bBaseAtPlace,
-			Q => BaseAtPlacePulse,
-		);
-		
-		IF BaseAtPlacePulse AND NOT bBaseClamped THEN
-			bBasesConveyor := FALSE;
-		END_IF
-		
-		IF LidAtPlacePulse AND NOT bLidClamped THEN
-			bLidsConveyor := FALSE;
+	20:
+		IF (bBasesConveyor AND bLidsConveyor) THEN
+			IF POU_LidAtPlace.fbDigitalSensor.obNegativeEdge THEN
+				bStopLidsConveyor := TRUE;
+			END_IF
+			IF POU_BaseAtPlace.fbDigitalSensor.obNegativeEdge THEN
+				bStopBaseConveyor := TRUE;
+			END_IF
 		END_IF
 		IF (NOT bLidsConveyor AND NOT bBasesConveyor) THEN
 		NextStep := 50;
-		END_IF *)
+		bStopLidsConveyor := FALSE;
+		bStopBaseConveyor := FALSE;
+		END_IF
 	
 	// turn on clamp products 	
 	50:
-		IF NOT bLidAtPlace AND NOT bBaseAtPlace THEN
-			bClampLid := TRUE;
-			bClampBase := TRUE;
-		END_IF
-		
-		IF bLidClamped AND bBaseClamped AND ProcessTimers[0].Q THEN
+		IF POU_ClampBase.fbStartEquipment.obEquipOn AND POU_ClampLid.fbStartEquipment.obEquipOn THEN
 			NextStep := 70;
-		ENd_IF
+		END_IF
 	
 	// move z and turn on grab	
 	70:	
-		IF bLidClamped THEN
-			bMoveZ := TRUE;
+		IF 	POU_BaseClamped.fbDigitalSensor.obSensorOn AND 
+			POU_PAP.fbMoveZ.obEquipOn AND 
+			POU_ItemDetected.fbDigitalSensor.obSensorOn AND 
+			POU_Grab.fbStartEquipment.obEquipOn			THEN
+			
 			IF bMoveZ AND bItemDetected THEN
 				bClampLid := FALSE;
 			END_IF

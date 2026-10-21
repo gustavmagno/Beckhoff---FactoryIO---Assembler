@@ -4,6 +4,8 @@
     <Declaration><![CDATA[VAR_GLOBAL
 	AlwaysTrue : BOOL := 1;
 	AlwaysFalse : BOOL := 0;
+	bStopLidsConveyor : BOOL;
+	bStopBaseConveyor : BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

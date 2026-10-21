@@ -52,7 +52,7 @@ END_VAR
                       "$type": "InVariable",
                       "Operand": {
                         "$type": "Operand",
-                        "Expression": "fbDigitalSensor.ibSensor"
+                        "Expression": "bBaseClamped"
                       }
                     }
                   ]
@@ -91,6 +91,32 @@ END_VAR
                 "Pin": {
                   "$type": "Pin",
                   "Name": "obSensorOn"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obPositiveEdge"
+                },
+                "OutVariable": {
+                  "$type": "OutVariable",
+                  "Operand": {
+                    "$type": "Operand"
+                  }
+                }
+              },
+              {
+                "$type": "Output",
+                "Pin": {
+                  "$type": "Pin",
+                  "Name": "obNegativeEdge"
                 },
                 "OutVariable": {
                   "$type": "OutVariable",

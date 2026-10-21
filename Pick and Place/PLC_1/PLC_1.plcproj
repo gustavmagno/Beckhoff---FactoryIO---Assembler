@@ -67,6 +67,9 @@
     <Compile Include="POUs\MAPPING\POU_OUT.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\PRG\DIGITAL SENSORS\POU_ItemDetected.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\PRG\DIGITAL SENSORS\POU_PartLeaving.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -88,7 +91,13 @@
     <Compile Include="POUs\PRG\EQUIPMENTS\POU_ClampLid.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\PRG\EQUIPMENTS\POU_PAP.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\PRG\EQUIPMENTS\POU_PosRaiseBase.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\PRG\EQUIPMENTS\POU_Grab.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\PRG\MOTORS\POU_LidsConveyor.TcPOU">

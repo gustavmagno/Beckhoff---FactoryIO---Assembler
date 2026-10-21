@@ -6,6 +6,7 @@ VAR
 	fbInterlockEquipment : FB_Intlk;
 	fbStartEquipment : FB_StartEquipment;
 	fbEquipmentSensor : FB_DigitalSensor;
+	bEQ : ARRAY [0..15] OF BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -453,9 +454,96 @@ END_VAR
                   "$type": "Sequence",
                   "Elements": [
                     {
-                      "$type": "InVariable",
+                      "$type": "Contact",
                       "Operand": {
+                        "$type": "Operand",
+                        "Expression": "POU_CNTRL_M1.ProcessStart"
+                      }
+                    },
+                    {
+                      "$type": "Block",
+                      "BlockType": "EQ",
+                      "Instance": {
                         "$type": "Operand"
+                      },
+                      "Inputs": [
+                        {
+                          "$type": "Input",
+                          "Pin": {
+                            "$type": "Pin",
+                            "Name": "EN"
+                          },
+                          "Sequence": {
+                            "$type": "Sequence"
+                          }
+                        },
+                        {
+                          "$type": "Input",
+                          "Pin": {
+                            "$type": "Pin"
+                          },
+                          "Sequence": {
+                            "$type": "Sequence",
+                            "Elements": [
+                              {
+                                "$type": "InVariable",
+                                "Operand": {
+                                  "$type": "Operand",
+                                  "Expression": "POU_CNTRL_M1.ActualStep"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "$type": "Input",
+                          "Pin": {
+                            "$type": "Pin"
+                          },
+                          "Sequence": {
+                            "$type": "Sequence",
+                            "Elements": [
+                              {
+                                "$type": "InVariable",
+                                "Operand": {
+                                  "$type": "Operand",
+                                  "Expression": "50"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "Outputs": [
+                        {
+                          "$type": "Output",
+                          "Pin": {
+                            "$type": "Pin",
+                            "Name": "ENO"
+                          }
+                        },
+                        {
+                          "$type": "Output",
+                          "Pin": {
+                            "$type": "Pin"
+                          },
+                          "OutVariable": {
+                            "$type": "OutVariable",
+                            "Operand": {
+                              "$type": "Operand",
+                              "Expression": "bEQ[0]"
+                            }
+                          }
+                        }
+                      ],
+                      "En": true,
+                      "Eno": true
+                    },
+                    {
+                      "$type": "Contact",
+                      "Operand": {
+                        "$type": "Operand",
+                        "Expression": "bEQ[0]"
                       }
                     }
                   ]
@@ -479,7 +567,8 @@ END_VAR
                 "OutVariable": {
                   "$type": "OutVariable",
                   "Operand": {
-                    "$type": "Operand"
+                    "$type": "Operand",
+                    "Expression": "bClampBase"
                   }
                 }
               },

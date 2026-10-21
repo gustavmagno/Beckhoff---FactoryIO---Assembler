@@ -12,7 +12,11 @@ POU_IN();
 
 
 // SENSORS
-
+POU_BaseAtPlace();
+POU_BaseClamped();
+POU_LidAtPlace();
+POU_LidClamped();
+POU_PartLeaving();
 
 //MOTORS
 POU_BaseConveyor();
@@ -21,6 +25,8 @@ POU_LidsConveyor();
 //EQUIPMENTS
 POU_ClampBase();
 POU_ClampLid();
+POU_PosRaiseBase();
+POU_PAP();
 
 // CNTRL
 POU_CNTRL_M1();
