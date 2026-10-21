@@ -540,7 +540,8 @@ END_VAR
                     {
                       "$type": "InVariable",
                       "Operand": {
-                        "$type": "Operand"
+                        "$type": "Operand",
+                        "Expression": "bLidClamped"
                       }
                     }
                   ]

@@ -769,7 +769,8 @@ END_VAR
                 "OutVariable": {
                   "$type": "OutVariable",
                   "Operand": {
-                    "$type": "Operand"
+                    "$type": "Operand",
+                    "Expression": "bLidsConveyor"
                   }
                 }
               }

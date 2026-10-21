@@ -42,7 +42,7 @@ CASE ActualStep OF
 	// machine stopped/reset
 	0: 
 		IF ProcessStart THEN
-			IF POU_LidsConveyor.fbStartMotor.obStsMotorRunning THEN 
+			IF (bLidsConveyor AND bBasesConveyor) THEN 
 			NextStep := 20;
 			END_IF
 		END_IF
